@@ -1,0 +1,15 @@
+package org.sana.mglj.core.Shader;
+
+import org.lwjgl.opengl.GL33;
+import org.sana.mglj.core.Handle.HandleFactory;
+
+public class ShaderHandleFactory extends HandleFactory<Integer> {
+    public ShaderHandleFactory(Integer shaderType) {
+        super(shaderType);
+    }
+
+    @Override
+    public int genHandle() {
+        return GL33.glCreateShader(this.arg);
+    }
+}
