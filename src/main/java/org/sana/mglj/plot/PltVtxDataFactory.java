@@ -18,6 +18,7 @@ public class PltVtxDataFactory implements VtxDataFactory {
         this.func = func;
     }
 
+    @Override
     public float[] genVtx() {
         // FIXME: 6 is hardcoded, change when changing slice size;
         final int sliceSize = 6;

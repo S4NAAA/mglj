@@ -3,7 +3,7 @@ package org.sana.mglj.plot;
 import org.sana.mglj.core.VtxObject.IdxDataFactory;
 
 public class GridIdxDataFactory implements IdxDataFactory {
-
+    @Override
     public int[] genIdx(int vtxCount) {
         int[] tmp = new int[4 * vtxCount / 3];
 

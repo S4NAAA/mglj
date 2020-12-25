@@ -8,7 +8,7 @@ import java.io.*;
 
 public class Shader extends HandleContainer {
 
-    public Shader(HandleFactory<Integer> generator) {
+    public Shader(HandleFactory generator) {
         super(generator);
     }
 

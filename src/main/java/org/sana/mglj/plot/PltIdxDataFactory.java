@@ -9,6 +9,7 @@ public class PltIdxDataFactory implements IdxDataFactory {
         this.count = count;
     }
 
+    @Override
     public int[] genIdx(int vtxCount) {
         assert (vtxCount % 6 == 0);
 

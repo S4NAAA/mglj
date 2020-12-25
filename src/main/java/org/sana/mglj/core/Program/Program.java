@@ -22,22 +22,21 @@ public class Program extends HandleContainer {
         GL33.glLinkProgram(this.handle);
     }
 
-    public void use() {
+    public Program use() {
         GL33.glUseProgram(this.handle);
+        return this;
     }
 
-    public static void resetUse() { GL33.glUseProgram(0);}
+    public void resetUse() { GL33.glUseProgram(0);}
 
-    public void setUniform2f(String name, float v1, float v2) {
-        this.use();
+    public Program setUniform2f(String name, float v1, float v2) {
         GL33.glUniform2f(GL33.glGetUniformLocation(this.handle, name), v1, v2);
-        Program.resetUse();
+        return this;
     }
 
-    public void setUniform4fv(String name, FloatBuffer fb) {
-        this.use();
+    public Program setUniform4fv(String name, FloatBuffer fb) {
         GL33.glUniformMatrix4fv(GL33.glGetUniformLocation(this.handle, name), false, fb);
-        Program.resetUse();
+        return this;
     }
 
     public int getStatus() {

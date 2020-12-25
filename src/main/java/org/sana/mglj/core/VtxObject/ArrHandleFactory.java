@@ -3,9 +3,7 @@ package org.sana.mglj.core.VtxObject;
 import org.lwjgl.opengl.GL33;
 import org.sana.mglj.core.Handle.HandleFactory;
 
-public class ArrHandleFactory extends HandleFactory<Void> {
-    ArrHandleFactory() { super(); }
-
+public class ArrHandleFactory implements HandleFactory {
     @Override
     public int genHandle() {
         return GL33.glGenVertexArrays();

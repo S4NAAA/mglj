@@ -10,6 +10,7 @@ public class GridVtxDataFactory implements VtxDataFactory {
         this.count = count;
     }
 
+    @Override
     public float[] genVtx() {
         //FIXME: hardcoded
 
