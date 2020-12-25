@@ -37,13 +37,13 @@ public class App {
         shader2.setUniform2f("topLeft", 0.0f, 0.0f);
         shader2.setUniform2f("botRight", 1.0f, 1.0f);
 
-        int i = 0;
-
         try {
             vtxObjWrkManager.await();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
+
+        int i = 0;
 
         while (!rdr.getWindow().shouldClose()) {
 
