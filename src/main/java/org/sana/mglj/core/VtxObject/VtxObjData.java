@@ -1,6 +1,7 @@
 package org.sana.mglj.core.VtxObject;
 
 
+// Keeping vtx and idx data is prob not needed
 public class VtxObjData {
     protected float[] vtxData;
     protected int[] idxData;

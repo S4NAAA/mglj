@@ -9,8 +9,8 @@ import org.lwjgl.opengl.GL33;
 
 public class VtxObject extends VtxObjData {
 
-    protected final BufObject vbo = new BufObject();
     protected final ArrObject vao = new ArrObject();
+    protected final BufObject vbo = new BufObject();
     protected final BufObject ebo = new BufObject();
     protected final int mode;
 
