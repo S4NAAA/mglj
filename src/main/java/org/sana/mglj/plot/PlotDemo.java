@@ -2,9 +2,8 @@ package org.sana.mglj.plot;
 
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL33;
-import org.lwjgl.system.CallbackI;
 import org.lwjgl.system.MemoryStack;
-import org.sana.mglj.core.Initializer;
+import org.sana.mglj.core.Context;
 import org.sana.mglj.core.Program.Program;
 import org.sana.mglj.core.VtxObject.VtxObjWorker;
 import org.sana.mglj.core.VtxObject.VtxObjWrkManager;
@@ -13,13 +12,13 @@ import java.nio.FloatBuffer;
 import java.util.concurrent.ExecutionException;
 
 public class PlotDemo {
-    private Initializer ctx;
-    private VtxObjWrkManager vtxObjWrkManager;
-    private Program pltProgram;
-    private Program txtProgram;
+    private final Context ctx;
+    private final VtxObjWrkManager vtxObjWrkManager;
+    private final Program pltProgram;
+    private final Program txtProgram;
 
     public PlotDemo() {
-        ctx = new Initializer();
+        ctx = new Context();
 
         vtxObjWrkManager = new VtxObjWrkManager();
 

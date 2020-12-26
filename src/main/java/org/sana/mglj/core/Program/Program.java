@@ -14,7 +14,6 @@ public class Program extends HandleContainer {
 
     public Program attach(Shader shader) {
         GL33.glAttachShader(this.handle, shader.getHandle());
-        shader.deleteHandle();
         return this;
     }
 

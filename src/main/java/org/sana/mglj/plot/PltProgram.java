@@ -22,6 +22,8 @@ public class PltProgram extends Program {
         }
 
         this.attach(vtxShader).attach(fragShader).link();
+        vtxShader.deleteHandle();
+        fragShader.deleteHandle();
 
         if (getStatus() == GL33.GL_FALSE) {
             throw new IllegalStateException(getLog());

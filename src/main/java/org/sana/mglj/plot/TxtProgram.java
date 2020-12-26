@@ -30,6 +30,10 @@ public class TxtProgram extends Program {
 
         this.attach(vtxShader).attach(geomShader).attach(fragShader).link();
 
+        vtxShader.deleteHandle();
+        geomShader.deleteHandle();
+        fragShader.deleteHandle();
+
         if (getStatus() == GL33.GL_FALSE) {
             throw new IllegalStateException(getLog());
         }

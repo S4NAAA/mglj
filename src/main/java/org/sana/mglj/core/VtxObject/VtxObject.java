@@ -14,13 +14,15 @@ public class VtxObject extends VtxObjData {
     protected final BufObject ebo = new BufObject();
     protected final int mode;
 
-    public VtxObject(int[] sliceData, int mode) {
-        super(sliceData);
+    // TODO: the layout of the vertex data is shader dependent, prob should do something about that
+
+    public VtxObject(int[] layoutData, int mode) {
+        super(layoutData);
         this.mode = mode;
     }
 
-    public VtxObject(VtxDataFactory vtxDataFactory, IdxDataFactory idxDataFactory, int[] sliceData, int mode) {
-        super(vtxDataFactory, idxDataFactory, sliceData);
+    public VtxObject(VtxDataFactory vtxDataFactory, IdxDataFactory idxDataFactory, int[] layoutData, int mode) {
+        super(vtxDataFactory, idxDataFactory, layoutData);
         this.mode = mode;
     }
 

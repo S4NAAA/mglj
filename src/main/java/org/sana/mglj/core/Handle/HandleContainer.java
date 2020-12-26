@@ -7,5 +7,6 @@ public abstract class HandleContainer {
     }
 
     public abstract void deleteHandle();
+
     public int getHandle() { return handle; }
 }

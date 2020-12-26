@@ -8,7 +8,8 @@ import java.util.concurrent.Executors;
 
 //TODO: -implement framebuffers
 
-//NOTE: -I'm pretty sure the overhead of multithreading is not worth it in this case
+//NOTE: -I'm pretty sure the overhead of multithreading is not worth it in this case,
+//       I only do this vtx and idx creation
 //      -Just did it as a proof of concept
 
 public class VtxObjWrkManager {
