@@ -7,60 +7,77 @@ import org.lwjgl.opengl.GL33;
 //       -add pvm functionality
 //       -add implementation to apply a functor on a target of the vbo
 
-public class VtxObject extends VtxObjData {
+public class VtxObject {
 
-    protected final ArrObject vao = new ArrObject();
-    protected final BufObject vbo = new BufObject();
-    protected final BufObject ebo = new BufObject();
+    protected final GlVtxArrayObject vao = new GlVtxArrayObject();
+    protected final VtxBufObject vbo = new VtxBufObject();
+    protected final ElemBufObject ebo = new ElemBufObject();
     protected final int mode;
 
     // TODO: the layout of the vertex data is shader dependent, prob should do something about that
 
-    public VtxObject(int[] layoutData, int mode) {
-        super(layoutData);
+    public VtxObject(int mode) {
         this.mode = mode;
     }
 
-    public VtxObject(VtxDataFactory vtxDataFactory, IdxDataFactory idxDataFactory, int[] layoutData, int mode) {
-        super(vtxDataFactory, idxDataFactory, layoutData);
-        this.mode = mode;
-    }
-
-    public void draw() {
-        GL33.glBindVertexArray(this.vao.getHandle());
-        GL33.glEnableVertexAttribArray(0);
-        GL33.glBindBuffer(GL33.GL_ELEMENT_ARRAY_BUFFER, this.ebo.getHandle());
-
+    public VtxObject drawElements(int length) {
         // GL33.GL_INT doesn't work
-        GL33.glDrawElements(this.mode, this.idxData.length, GL33.GL_UNSIGNED_INT, 0);
-
-        GL33.glBindBuffer(GL33.GL_ELEMENT_ARRAY_BUFFER, 0);
-        GL33.glBindVertexArray(0);
+        GL33.glDrawElements(this.mode, length, GL33.GL_UNSIGNED_INT, 0);
+        return this;
     }
 
-    public void bufferData() {
-        GL33.glBindVertexArray(this.vao.getHandle());
+    public VtxObject bindVao() {
+        this.vao.bind();
+        return this;
+    }
 
-        GL33.glBindBuffer(GL33.GL_ARRAY_BUFFER, this.vbo.getHandle());
-        GL33.glBufferData(GL33.GL_ARRAY_BUFFER, this.vtxData, GL33.GL_DYNAMIC_DRAW);
+    public VtxObject unbindVao() {
+        this.vao.unbind();
+        return this;
+    }
 
+    public VtxObject bindVbo() {
+        this.vbo.bind();
+        return this;
+    }
+
+    public VtxObject unbindVbo() {
+        this.vbo.unbind();
+        return this;
+    }
+
+    public VtxObject bindEbo() {
+        this.ebo.bind();
+        return this;
+    }
+
+    public VtxObject unbindEbo() {
+        this.ebo.unbind();
+        return this;
+    }
+
+    public VtxObject bufferVtxData(float[] vtxData, int usage) {
+        this.vbo.bufferData(vtxData, usage);
+        return this;
+    }
+
+    public VtxObject bufferIdxData(int[] idxData, int usage) {
+        this.ebo.bind().bufferData(idxData, usage).unbind();
+        return this;
+    }
+
+    public VtxObject setVtxAttribLayout(int[] layout, int sliceSize) {
 
         int offset = 0;
-        for (int i = 0; i < layoutData.length; i++) {
+        for (int i = 0; i < layout.length; i++) {
             GL33.glEnableVertexAttribArray(i);
-            GL33.glVertexAttribPointer(i, layoutData[i], GL33.GL_FLOAT,
+            GL33.glVertexAttribPointer(i, layout[i], GL33.GL_FLOAT,
                     false, sliceSize * 4, (long)offset * 4);
 
-            offset += layoutData[i];
+            offset += layout[i];
         }
 
-        GL33.glBindVertexArray(0);
-        GL33.glBindBuffer(GL33.GL_ARRAY_BUFFER, 0);
-
-        GL33.glBindBuffer(GL33.GL_ELEMENT_ARRAY_BUFFER, this.ebo.getHandle());
-        GL33.glBufferData(GL33.GL_ELEMENT_ARRAY_BUFFER, this.idxData, GL33.GL_DYNAMIC_DRAW);
-
-        GL33.glBindBuffer(GL33.GL_ELEMENT_ARRAY_BUFFER, 0);
+        return this;
     }
 
     public void delete() {
@@ -68,16 +85,4 @@ public class VtxObject extends VtxObjData {
        vbo.deleteHandle();
        ebo.deleteHandle();
     }
-/*
-  public void updateBuffer() {
-    GL33.glBindBuffer(GL33.GL_ARRAY_BUFFER, this.vbo);
-
-    Objects.requireNonNull(GL33.glMapBuffer(GL33.GL_ARRAY_BUFFER, GL33.GL_WRITE_ONLY))
-        .asFloatBuffer().put(this.vtxData);
-
-    GL33.glUnmapBuffer(GL33.GL_ARRAY_BUFFER);
-    GL33.glBindBuffer(GL33.GL_ARRAY_BUFFER, 0);
-  }
-
- */
 }
