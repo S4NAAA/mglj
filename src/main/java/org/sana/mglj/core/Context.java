@@ -10,10 +10,10 @@ import java.util.Objects;
 //TODO: -implement VtxObject control system
 //      -implement shader controls system
 
-public class Initializer {
+public class Context {
     public final Window window;
 
-    public Initializer() {
+    public Context() {
         GLFWErrorCallback.createPrint(System.err).set();
 
         if (!GLFW.glfwInit())
